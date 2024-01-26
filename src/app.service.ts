@@ -1,9 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PaymentMethodCheckEvent } from './payment-method.dto';
 import { ClientKafka } from '@nestjs/microservices';
-import { VisaMethodRule } from './factories/visa-factory';
-import { MasterCardMethodRule } from './factories/mastercard-factory';
-import { ChooseFactory } from './factories/factory-chooser';
+import { ChooseFactory } from './payment-methods/method-chooser';
 
 @Injectable()
 export class AppService {
@@ -17,9 +15,16 @@ export class AppService {
 
   get_payment_rules(paymentMethod: PaymentMethodCheckEvent) {
     console.log(`The payment method is ${paymentMethod.paymentMethod}.`);
-    this.validatedClient.emit(
-      'payment_validated',
-      this.factoryChooser.chooseMethod(paymentMethod.paymentMethod),
-    );
+    if (paymentMethod.paymentMethod === 'VISA') {
+      this.validatedClient.emit(
+        'visa_payment_validated',
+        this.factoryChooser.chooseMethod('VISA'),
+      );
+    } else if (paymentMethod.paymentMethod === 'MASTERCARD') {
+      this.validatedClient.emit(
+        'mastercard_payment_validated',
+        this.factoryChooser.chooseMethod('MASTERCARD'),
+      );
+    }
   }
 }

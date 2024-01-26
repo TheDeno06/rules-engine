@@ -1,5 +1,5 @@
-import { MasterCardMethodRule } from './mastercard-factory';
-import { VisaMethodRule } from './visa-factory';
+import { MasterCardMethodRule } from './mastercard-method';
+import { VisaMethodRule } from './visa-method';
 
 export class ChooseFactory {
   chooseMethod(method: string): {} | Error {

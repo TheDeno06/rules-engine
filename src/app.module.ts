@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
-import { ChooseFactory } from './factories/factory-chooser';
+import { ChooseFactory } from './payment-methods/method-chooser';
 
 @Module({
   imports: [
