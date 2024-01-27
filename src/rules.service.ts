@@ -4,7 +4,7 @@ import { ClientKafka } from '@nestjs/microservices';
 import { ChooseFactory } from './payment-methods/method-chooser';
 
 @Injectable()
-export class AppService {
+export class RulesService {
   constructor(
     private readonly factoryChooser: ChooseFactory,
     @Inject('PAYMENT_VALIDATED') private readonly validatedClient: ClientKafka,

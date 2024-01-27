@@ -1,10 +1,10 @@
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { RulesService } from './rules.service';
 import { EventPattern } from '@nestjs/microservices';
 
 @Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class RulesController {
+  constructor(private readonly appService: RulesService) {}
 
   @Get()
   getHello(): string {

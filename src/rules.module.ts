@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { RulesController } from './rules.controller';
+import { RulesService } from './rules.service';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { ChooseFactory } from './payment-methods/method-chooser';
 
@@ -22,7 +22,7 @@ import { ChooseFactory } from './payment-methods/method-chooser';
       },
     ]),
   ],
-  controllers: [AppController],
-  providers: [AppService, ChooseFactory],
+  controllers: [RulesController],
+  providers: [RulesService, ChooseFactory],
 })
-export class AppModule {}
+export class RulesModule {}
