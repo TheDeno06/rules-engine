@@ -15,16 +15,9 @@ export class RulesService {
 
   get_payment_rules(paymentMethod: PaymentMethodCheckEvent) {
     console.log(`The payment method is ${paymentMethod.paymentMethod}.`);
-    if (paymentMethod.paymentMethod === 'VISA') {
-      this.validatedClient.emit(
-        'visa_payment_validated',
-        this.factoryChooser.chooseMethod('VISA'),
-      );
-    } else if (paymentMethod.paymentMethod === 'MASTERCARD') {
-      this.validatedClient.emit(
-        'mastercard_payment_validated',
-        this.factoryChooser.chooseMethod('MASTERCARD'),
-      );
-    }
+    this.validatedClient.emit(
+      `${paymentMethod.paymentMethod.toLowerCase()}_payment_validated`,
+      this.factoryChooser.chooseMethod(paymentMethod.paymentMethod),
+    );
   }
 }
